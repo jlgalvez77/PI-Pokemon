@@ -1,4 +1,5 @@
 const { Router } = require('express');
+const { getPokemonsHandler, getPokemonHandler, createPokemonHandler } = require('../handlers/pokemonHandlers');
 // Importar todos los routers;
 // Ejemplo: const authRouter = require('./auth.js');
 
@@ -8,29 +9,14 @@ const mainRouter = Router();
 // Configurar los routers
 // Ejemplo: router.use('/auth', authRouter);
 
-mainRouter.get('/', (req, res) => {
-    res.status(200).send('Bienvenido a la API de Pokemon');
-});
+mainRouter.get('/pokemon', getPokemonsHandler);
 
-mainRouter.get('/pokemon', (req, res) => {
-    res.status(200).send('Listado de Pokemon');
+mainRouter.get('/pokemon/:id', getPokemonHandler)
 
-});
+mainRouter.get('pokemon/:name', getPokemonHandler)
 
-mainRouter.get('/pokemon/:id', (req, res) => {
+mainRouter.get('/types', getPokemonHandler)
 
-});
-
-mainRouter.get('pokemon/id/name', (req, res) => {
-    const { name } = req.params;
-});
-
-mainRouter.get('/types', (req, res) => {
-
-});
-
-mainRouter.post('/pokemon', (req, res) => {
-    res.status(200).send('Creando Pokemon');
-});
+mainRouter.post('/pokemon', createPokemonHandler)
 
 module.exports = mainRouter;
