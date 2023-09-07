@@ -1,4 +1,3 @@
-const { json } = require("body-parser");
 const { createPokemon, getPokemonById } = require("../controllers/PokemonController");
 
 const getPokemonsHandler = (req, res) => {
@@ -13,18 +12,12 @@ const getPokemonsHandler = (req, res) => {
 };
 
 
-
 const getPokemonHandler = async(req, res) => {
     //Trae un Pokemon a traves de su id
     const { id } = req.params;
 
     const source = isNaN(id) ? 'BDD' : 'API';
 
-    if(isNaN(id)){
-        //Es de la BDD - UUID
-    } else {
-        //Es de la API - Integer
-    }
     try {
         const pokemon = await getPokemonById(id, source);
         res.status(200).json(pokemon);
